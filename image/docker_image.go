@@ -160,10 +160,10 @@ func (image *dockerImageAnalyzer) Analyze() (*AnalysisResult, error) {
 		config.History[histIdx].Size = uint64(tree.FileSize)
 
 		image.Layers[layerIdx] = &dockerLayer{
-			History: config.History[histIdx],
-			RefIndex:   tarPathIdx,
-			RefTree:    image.Trees[layerIdx],
-			TarPath: manifest.LayerTarPaths[tarPathIdx],
+			History:  config.History[histIdx],
+			RefIndex: tarPathIdx,
+			RefTree:  image.Trees[layerIdx],
+			TarPath:  manifest.LayerTarPaths[tarPathIdx],
 		}
 
 		layerIdx--
