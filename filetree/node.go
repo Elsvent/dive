@@ -3,6 +3,7 @@ package filetree
 import (
 	"archive/tar"
 	"fmt"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"sort"
 	"strings"
@@ -32,6 +33,7 @@ func NewNode(parent *FileNode, name string, data FileInfo) (node *FileNode) {
 
 	node.Children = make(map[string]*FileNode)
 	node.Parent = parent
+	node.Id = uuid.New()
 
 	return node
 }

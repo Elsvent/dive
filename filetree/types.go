@@ -7,7 +7,7 @@ import (
 
 // FileTree represents a set of files, directories, and their relations.
 type FileTree struct {
-	Root     *FileNode
+	Root     uuid.UUID
 	Size     int
 	FileSize uint64
 	Name     string
@@ -16,10 +16,11 @@ type FileTree struct {
 
 // FileNode represents a single file, its relation to files beneath it, the tree it exists in, and the metadata of the given file.
 type FileNode struct {
-	Parent   *FileNode
+	Id       uuid.UUID
+	Parent   uuid.UUID
 	Name     string
 	Data     NodeData
-	Children map[string]*FileNode
+	Children map[string]uuid.UUID
 	path     string
 	isRoot   bool
 }
@@ -49,6 +50,12 @@ type FileInfo struct {
 	Gid      int
 	IsDir    bool
 }
+
+
+type FileNodeRegistry struct {
+	Nodes map[uuid.UUID]FileNode
+}
+
 
 // DiffType defines the comparison result between two FileNodes
 type DiffType int
